@@ -1,3 +1,40 @@
 page-home {
+	background: black;
+	.menu-item{
+		text-align: center;
+		margin: 15px auto;
+		/* border: 1px solid #fff;
+		border-radius: 5px;
+		background: #fff;
+		padding: 5px;
+		box-shadow: 1px 1px 28px -5px rgba(0, 0, 0, 0.3); */
+		span{
+			display: block;
+			color: #5e5e5e;
+		}
+		span.menu-icon{
+			/* justify-content: middle;
+			font-size: 3em;
+			border: 1px solid #000;
+			border-radius: 100%;
+			width: 3em;
+			margin-bottom: 9px; */
+			height: 50%;
+			width: 11%;
+			border:  1px solid red;
+			margin: 25px;
+			border-radius: 100%;
+		}
+		span.menu-text{
+			font-size: 1.3em;
+		}
+	}
 
+	div.circle{
+		height: 50%;
+		width: 22%;
+		border:  1px solid red;
+		margin: 25px;
+		border-radius: 100%;
+	}
 }

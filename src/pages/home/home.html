@@ -1,14 +1,49 @@
 <ion-header>
-  <ion-navbar>
+  <!-- <ion-navbar>
     <ion-title>
       Ionic Blank
     </ion-title>
-  </ion-navbar>
+  </ion-navbar> -->
+  <ion-toolbar color="dark" padding-right padding-left>	
+  		<ion-buttons>
+			<!--  -->
+			<button ion-button icon-only>
+				<ion-icon name="ios-settings"></ion-icon>
+			</button>
+		</ion-buttons>
+		<ion-buttons end>
+			<!--  -->
+			<button ion-button icon-only>
+				<ion-icon name="ios-exit-outline"></ion-icon>
+			</button>
+		</ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding-top padding-bottom>
+
+	<ion-fab right bottom>
+	    <button ion-fab color="dark">
+	    	<ion-icon name="ios-flash"></ion-icon>
+	    </button>
+	  </ion-fab>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-5 class="menu-item" *ngFor="let menu of menus">
+				<!-- <ion-icon name=""></ion-icon> -->
+				<span class="menu-icon">
+					<ion-icon name="{{menu.icon}}"></ion-icon>
+				</span>
+				<span class="menu-text">
+					{{menu.name}}
+				</span>
+			</ion-col>
+			
+		</ion-row>
+	</ion-grid>
+
+	<div class="circle">
+		
+	</div>
 </ion-content>
