@@ -1,3 +1,48 @@
 page-buy-data {
+	.form-cont{
+			flex: 1;
+			background: #E8EDF3;
+			vertical-align: center;
+			align-items: center;
+			justify-content: middle;
 
+			ion-list{
+				ion-item{
+					background: none;
+					.text-input::-moz-placeholder {
+					  color: #A6A9AD;
+					  font-size: 0.8em;
+					}
+
+					.text-input:-ms-input-placeholder {
+					  color: #A6A9AD;
+					  font-size: 0.8em;
+					}
+
+					.text-input::-webkit-input-placeholder {
+					  text-indent: 0;
+					  color: #A6A9AD;
+					  font-size: 0.8em;
+					}
+				}
+			}
+			
+			.title{
+				color: #99AECD;
+				text-align: center;
+				padding: 5%;
+			}
+
+			.btn-cont{
+				#sign-button{
+					background: #fff;
+					color:#A5B7D0;
+					height: 2.5625em;
+					width: 13.125em;
+					border-radius: 5px 24px 5px 24px;
+					box-shadow: 0px 3px 10px 0.4px rgba(0, 0, 0, 0.2);
+					margin: 0 auto;
+				}
+			}
+		}
 }
