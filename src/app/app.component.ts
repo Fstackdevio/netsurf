@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-// import { LoginPage } from '../pages/login/login';
+import { ShareDataPage } from '../pages/share-data/share-data';
 /*import { HomePage } from '../pages/home/home';*/
 import { LoginPage } from '../pages/login/login';
 import { BuyDataPage } from '../pages/buy-data/buy-data';
@@ -13,7 +13,7 @@ import { BuyDataPage } from '../pages/buy-data/buy-data';
 })
 export class MyApp {
   rootPage:any = HomePage;
-  rootPage:any = BuyDataPage;
+  //rootPage:any = BuyDataPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

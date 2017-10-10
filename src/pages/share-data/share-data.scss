@@ -1,3 +1,63 @@
+.ion-page > ion-content{
+	background: #fff;
+}
 page-share-data {
-
+	.scroll-content{
+		flex-direction: column;
+		display: flex;
+		background: #fff;
+		#top{
+			background: #9E82FF;
+			flex: 0.7;
+			height: 50vh;
+		}
+		#mid{
+			background: url('./../assets/images/curve-xhdpi.png');
+			background-size: contain;
+			margin-top: -3%;
+			position: relative;
+			flex: 0.5;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-origin: 0;
+		}
+		#bottom{
+			background: #fff;
+			flex: 3;
+			text-align: center;
+			height: 50vh;
+			.container{
+				.sh-title{
+					color: #9E82FF;
+					font-weight: lighter;
+				}
+				.sub-text{
+					font-weight: lighter;
+					opacity: 0.6;
+				}
+				form{
+					#next-btn{
+						background: #9E82FF;
+						color: #fff;
+						font-weight: lighter;
+						border-radius: 50px;
+						padding: 4%;
+						font-size: 1em;
+						margin: 5%;
+						width: 50%;
+						height: 10%;
+						box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+					}
+					ion-label{
+						font-size: 1.3em;
+					}
+					ion-input{
+						color: #9E82FF;
+						letter-spacing: 50px;
+						opacity: 0.5;
+					}
+				}
+			}
+		}
+	}
 }

@@ -13,6 +13,9 @@ import { LoginPage } from '../pages/login/login';
 import { LoginHistoryPage } from '../pages/login-history/login-history';
 import { SettingsPage } from '../pages/settings/settings';
 import { ShareDataPage } from '../pages/share-data/share-data';
+import { ProfilePage } from '../pages/profile/profile';
+import { RequestDataPage } from '../pages/request-data/request-data';
+import { EwalletPage } from '../pages/ewallet/ewallet';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ShareDataPage } from '../pages/share-data/share-data';
     LoginPage,
     LoginHistoryPage,
     SettingsPage,
-    ShareDataPage
+    ShareDataPage,
+    ProfilePage,
+    RequestDataPage,
+    EwalletPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,10 @@ import { ShareDataPage } from '../pages/share-data/share-data';
     LoginPage,
     LoginHistoryPage,
     SettingsPage,
-    ShareDataPage
+    ShareDataPage,
+    ProfilePage,
+    RequestDataPage,
+    EwalletPage
   ],
   providers: [
     StatusBar,

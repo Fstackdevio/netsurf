@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 @Component({
-  selector: 'page-change-password',
-  templateUrl: 'change-password.html',
+  selector: 'page-ewallet',
+  templateUrl: 'ewallet.html',
 })
-export class ChangePasswordPage {
+export class EwalletPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChangePasswordPage');
+    console.log('ionViewDidLoad EwalletPage');
   }
 
 }

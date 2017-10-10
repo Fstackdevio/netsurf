@@ -1,10 +1,5 @@
-<ion-header>
-  <!-- <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar> -->
-  <ion-toolbar color="primary" padding-right padding-left>	
+<ion-header no-border>
+  <ion-toolbar color="light" padding-right padding-left>	
   		<ion-buttons>
 			<!--  -->
 			<button ion-button icon-only>
@@ -23,13 +18,42 @@
   </ion-toolbar> -->
 </ion-header>
 
-<ion-content padding-top padding-bottom>
+<ion-content padding-right padding-left>
 
-	<ion-fab right bottom>
-	    <button ion-fab color="dark">
+	<ion-fab right bottom margin-right margin-bottom>
+	    <button ion-fab color="primary">
 	    	<ion-icon name="ios-flash"></ion-icon>
 	    </button>
 	  </ion-fab>
+
+	  <section id="balance">
+	  	<div class="bal-wrapper">
+	  		<div class="bal {{low}}">
+	  			{{balance}} MB
+	  		</div>
+	  		<div class="bal-text">
+	  			Remaining Quota
+	  		</div>
+	  	</div>
+	  </section>
+
+	  <section id="menu-opts">
+	  	<div class="menu-wrapper">
+	  		<ion-grid>
+				<ion-row>
+					<ion-col col-4 class="menu-item" (click)="switchView(menu.view)" *ngFor="let menu of menus">
+						<span class="menu-icon">
+							<ion-icon name="{{menu.icon}}"></ion-icon>
+						</span>
+						<span class="menu-text">
+							{{menu.name}}
+						</span>
+					</ion-col>
+					
+				</ion-row>
+			</ion-grid>
+	  	</div>
+	  </section>
 
 	<!-- <ion-grid>
 		<ion-row>
@@ -46,7 +70,23 @@
 		</ion-row>
 	</ion-grid> -->
 
-	<span class="circle">
-		30
-	</span>
+	<!-- <h1>CSS Responsive Circles with Vertically-Centered Text</h1>
+	
+	<div class="circle">
+		<div class="circle__inner">
+			<div class="circle__wrapper">
+				<div class="circle__content">Circle text</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="circle">
+		<div class="circle__inner">
+			<div class="circle__wrapper">
+				<div class="circle__content">A circle with a lot more text inside</div>
+			</div>
+		</div>
+	</div> -->
+
+
 </ion-content>
