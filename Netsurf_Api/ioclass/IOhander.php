@@ -25,12 +25,19 @@
 		    }
 		}
 
-		public function getById($email, $ref, $table){
-			$SQL = "SELECT * from $table where '_email' = :email and '_act_code' = :ref";
-			$q = $this->DBcon->prepare($SQL);
-			$q->execute(array(':email' => $email, ':ref' => $ref));
-			$data = $q->fetch(PDO::FETCH_ASSOC);
-			return $data;
+		public function getById($username, $id, $table){
+			$SQL = "SELECT * from $table where '_username' = :username ";
+			$SQL2 = "SELECT * from _pin where '$id' = :id ";
+			$sqlcodes = array($SQL, $SQL2);
+
+			foreach($sqlquery as $sqlcodes){
+				$q = $this->DBcon->prepare($sqlquery);
+				$q->execute(array(':username' => $username, ':id' => $id));
+				$q->fetch(PDO::FETCH_ASSOC);
+				$data = array($q);
+				return $data;
+			}
+			
 		}
 
 		public function insert($table, array $fields, array $values) {
@@ -124,25 +131,61 @@
 			$input=preg_replace("#[^0-9a-z]#i","",$input);
 	    }
 	    
-	    public function login($username, $password, $table, $dbtable, $orderparams){
-		    $query = $DBcon->prepare("SELECT * FROM $table WHERE $dbtable='$username' ORDER BY $orderparams DESC limit 1");
+	    public function login($username, $password, $table, $param, $orderparams){
+		    $query = $DBcon->prepare("SELECT * FROM $table WHERE $param='$username' ORDER BY $orderparams DESC limit 1");
 		    $vee=$query->execute();
 		    $row=$vee->fetch_array();
 		    $count=$query->num_rows;
-		    $getpw = $row['password'];
+		    $id = $row['_id'];
+		    $newquery = "SELECT _password FROM _radcheck WHERE _id = $id";
+		    $vue = $DBcon->prepare($newquery);
+		    $veu = $vue->execute();
+		    $datas = $veu->fetch_array();
+		    $getpw = $datas['_password'];
 		    $verify = password_verify($password, $getpw);
 		    if(($count)){
 		        if ($verify) {
-		           $_SESSION['userid'] = $row['_userid'];
-		            echo "ok";
+		           $_SESSION['userid'] = $row['_id'];
+		            return "logged in";
 		        } else {
-		            echo "incorrect password";
+		            return "incorrect password";
 		        }
 		    } else {
-		         echo  "email not exist try logging in with your username";
+		         echo  "incorrect login details";
 		    }
 			$DBcon->close();
 		}
+
+		public function dataBalance($table, $username, $pin, $sessionId){
+			$query = $DBcon->prepare("SELECT * FROM $table WHERE _id='$sessionId' ORDER BY _id DESC limit 1");
+		    $vee=$query->execute();
+		    $row=$vee->fetch_array();
+		    $count=$query->num_rows;
+		    $id = $row['_id'];
+		    $username = $row['username'];
+		    $newquery = "SELECT _pin FROM _pin WHERE foreignid = $id";
+		    $vue = $DBcon->prepare($newquery);
+		    $veu = $vue->execute();
+		    $datas = $veu->fetch_array();
+		    $getpw = $datas['pin'];
+		    $newquery = "SELECT balance FROM balance WHERE foreignid = $id";
+		    $vue = $DBcon->prepare($newquery);
+		    $veu = $vue->execute();
+		    $datas = $veu->fetch_array();
+		    $databal = $datas['balance'];
+		    $verify = check_match($getpw, $pin);
+		    if(($count)){
+		        if ($verify == true) {
+		            return $databal;
+		        } else {
+		            return "incorrect password";
+		        }
+		    } else {
+		         echo  "incorrect login details";
+		    }
+			$DBcon->close();
+		}
+
 		public function GetClientMac(){
 		    $macAddr=false;
 		    $arp=`arp -n`;
@@ -292,5 +335,15 @@
 				return false;
 			}
 		}
+
+		public function connect($username, $password){
+			$login = $this->login($username, $password, 'tbl_student', '_username', '_regNumber');
+			return $login;
+		}
+
+		// public function dataBalance('_databalance', $username, $pin, $sessionId){
+		// 	getById($username, $id, $table);
+		// }
+
 	}		
 ?>

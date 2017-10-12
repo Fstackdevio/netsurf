@@ -14,4 +14,8 @@ export class BuyDataPage {
     console.log('ionViewDidLoad BuyDataPage');
   }
 
+  goBack(){
+  	this.navCtrl.pop();
+  }
+
 }
