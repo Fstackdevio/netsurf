@@ -1,17 +1,19 @@
 <?php 
 
-$app->get('/dataBalance', function ($request, $response) {
+$app->post('/dataBalance', function ($request, $response) {
+		$handler = new IOhandler;
+		$data = json_decode($request->getBody());
 		$username = $data->username;
-		$pin = $data->pin;
-		$sessionId = $data->sessionId;
-        $sth = $handler->dataBalance('_databalance', $username, $pin, $sessionId);
+		$password = $data->password;
+        $sth = $handler->dataBalance($username, $password);
         return $this->response->withJson($sth);
     });
 
-$app->get('/cashBalance', function ($request, $response) {
+$app->post('/cashBalance', function ($request, $response) {
+		$handler = new IOhandler;
+		$data = json_decode($request->getBody());
 		$username = $data->username;
-		$pin = $data->pin;
-		$sessionId = $data->sessionId;
-        $sth = $handler->cashBalance('_easywallet', $username, $pin, $sessionId);
+		$password = $data->password;
+        $sth = $handler->cashBalance($username, $password);
         return $this->response->withJson($sth);
     });

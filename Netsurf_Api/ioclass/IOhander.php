@@ -83,12 +83,12 @@
 			return true;
 		}
 
-		public function startSession(){
-			if (!isset($_SESSION['id'])) {
+		public function startSession($param){
+			if (!isset($_SESSION[$param])) {
 				session_start();
 			}
-			if (isset($_SESSION['id'])) {
-				$sessid = $_SESSION['id'];
+			if (isset($_SESSION[$param])) {
+				$sessid = $_SESSION[$param];
 			}	
 		}
 
@@ -130,60 +130,135 @@
 	    public function validateInput($input){
 			$input=preg_replace("#[^0-9a-z]#i","",$input);
 	    }
+
+	    // login("tbl_student", "adeojo.emmanuel", "magnitude", "_username", )
 	    
-	    public function login($username, $password, $table, $param, $orderparams){
-		    $query = $DBcon->prepare("SELECT * FROM $table WHERE $param='$username' ORDER BY $orderparams DESC limit 1");
-		    $vee=$query->execute();
-		    $row=$vee->fetch_array();
-		    $count=$query->num_rows;
-		    $id = $row['_id'];
-		    $newquery = "SELECT _password FROM _radcheck WHERE _id = $id";
-		    $vue = $DBcon->prepare($newquery);
-		    $veu = $vue->execute();
-		    $datas = $veu->fetch_array();
-		    $getpw = $datas['_password'];
-		    $verify = password_verify($password, $getpw);
-		    if(($count)){
-		        if ($verify) {
-		           $_SESSION['userid'] = $row['_id'];
-		            return "logged in";
+	    public function login($table, $username, $password){
+	    	$sql = "SELECT * FROM $table WHERE _username='{$username}' ORDER BY '_id' DESC limit 1";
+		    $q = $this->DBcon->prepare($sql);
+			$q->execute();
+			$data = $q->fetch(PDO::FETCH_ASSOC);
+		    $count=$q->rowCount();
+
+		    if($count){
+			    $getUsername = $data['_username'];
+			    $username_Id = $data['_id'];
+
+			    $sql2 = "SELECT * FROM _radcheck WHERE _foreignKey2='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql2);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $count2=$q->rowCount();
+			    $getpw = $data['_Password'];
+			    $username = $data['_id'];
+		    
+				if ($password == $getpw) {
+					// session_start();
+		           $_SESSION['userid'] = $data['_id'];
+		           // echo $_SESSION['userid']
+		           return "ok";
 		        } else {
 		            return "incorrect password";
 		        }
-		    } else {
-		         echo  "incorrect login details";
-		    }
-			$DBcon->close();
+			}else {
+			    return "username doest exist";
+			}
 		}
 
-		public function dataBalance($table, $username, $pin, $sessionId){
-			$query = $DBcon->prepare("SELECT * FROM $table WHERE _id='$sessionId' ORDER BY _id DESC limit 1");
-		    $vee=$query->execute();
-		    $row=$vee->fetch_array();
-		    $count=$query->num_rows;
-		    $id = $row['_id'];
-		    $username = $row['username'];
-		    $newquery = "SELECT _pin FROM _pin WHERE foreignid = $id";
-		    $vue = $DBcon->prepare($newquery);
-		    $veu = $vue->execute();
-		    $datas = $veu->fetch_array();
-		    $getpw = $datas['pin'];
-		    $newquery = "SELECT balance FROM balance WHERE foreignid = $id";
-		    $vue = $DBcon->prepare($newquery);
-		    $veu = $vue->execute();
-		    $datas = $veu->fetch_array();
-		    $databal = $datas['balance'];
-		    $verify = check_match($getpw, $pin);
-		    if(($count)){
-		        if ($verify == true) {
-		            return $databal;
+		public function connect($username, $password){
+			$login = $this->login('tbl_student', $username, $password);
+			return $login;
+		}
+
+		// public function dataBalance($table, $username, $pin, $sessionId){
+		public function bal($table, $username, $password){
+			$sql = "SELECT * FROM $table WHERE _username='$username' ORDER BY '_id' DESC limit 1";
+		    $q = $this->DBcon->prepare($sql);
+			$q->execute();
+			$data = $q->fetch(PDO::FETCH_ASSOC);
+		    $count=$q->rowCount();
+
+		    if($count){
+			    $getUsername = $data['_username'];
+			    $username_Id = $data['_id'];
+
+			    $sql2 = "SELECT * FROM _radcheck WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql2);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpw = $data['_Password'];
+			    $username = $data['_id'];
+
+		    	$sql3 = "SELECT * FROM _pin WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql3);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpin = $data['_pin'];
+			    $username = $data['_id'];
+		    
+				if ($password == $getpw || $password == $getpin) {
+		            $sql3 = "SELECT * FROM _databalance WHERE _foreignKey='$username_Id' ORDER BY '_id' DESC limit 1";
+				    $q = $this->DBcon->prepare($sql3);
+					$q->execute();
+					$data = $q->fetch(PDO::FETCH_ASSOC);
+				    $databal = $data['_dataBalance'];
+				    return $databal;
 		        } else {
 		            return "incorrect password";
 		        }
-		    } else {
-		         echo  "incorrect login details";
-		    }
-			$DBcon->close();
+			}else {
+			    return "username doest exist";
+			}
+		}
+
+		public function cashbal($table, $username, $password){
+			$sql = "SELECT * FROM $table WHERE _username='$username' ORDER BY '_id' DESC limit 1";
+		    $q = $this->DBcon->prepare($sql);
+			$q->execute();
+			$data = $q->fetch(PDO::FETCH_ASSOC);
+		    $count=$q->rowCount();
+
+		    if($count){
+			    $getUsername = $data['_username'];
+			    $username_Id = $data['_id'];
+
+			    $sql2 = "SELECT * FROM _radcheck WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql2);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpw = $data['_Password'];
+			    $username = $data['_id'];
+
+			    $sql3 = "SELECT * FROM _pin WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql3);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpin = $data['_pin'];
+			    $username = $data['_id'];
+		    
+				if ($password == $getpw || $password == $getpin) {
+		            $sql3 = "SELECT * FROM _easywallet WHERE _foreignKey='$username_Id' ORDER BY '_id' DESC limit 1";
+				    $q = $this->DBcon->prepare($sql3);
+					$q->execute();
+					$data = $q->fetch(PDO::FETCH_ASSOC);
+				    $databal = $data['_cashBalance'];
+				    return $databal;
+		        } else {
+		            return "incorrect password";
+		        }
+			}else {
+			    return "username doest exist";
+			}
+		}
+
+		public function dataBalance($username, $password){
+			$balance = $this->bal('tbl_student', $username, $password);
+			return $balance;
+		}
+
+		public function cashBalance($username, $password){
+			$balance = $this->cashbal('tbl_student', $username, $password);
+			return $balance;
 		}
 
 		public function GetClientMac(){
@@ -336,10 +411,7 @@
 			}
 		}
 
-		public function connect($username, $password){
-			$login = $this->login($username, $password, 'tbl_student', '_username', '_regNumber');
-			return $login;
-		}
+		
 
 		// public function dataBalance('_databalance', $username, $pin, $sessionId){
 		// 	getById($username, $id, $table);

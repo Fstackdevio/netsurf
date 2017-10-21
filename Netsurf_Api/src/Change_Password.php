@@ -1,6 +1,7 @@
 <?php 
 
 $app->post('/ChangePass', function($request, $response){
+	$handler = new IOhandler;
 	$data = json_decode($request->getBody());
 	$username = $data->username;
 	$password = $data->password;

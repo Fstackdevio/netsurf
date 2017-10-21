@@ -17,11 +17,9 @@ session_start();
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
 
-
 // iohandler
-require __DIR__ . '/../ioclass/IOhander.php';
+$handler = require __DIR__ . '/../ioclass/IOhander.php';
 // $handler = new IOhandler;
-$handler = new IOhandler;
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
@@ -29,16 +27,12 @@ require __DIR__ . '/../src/dependencies.php';
 // Register middleware
 require __DIR__ . '/../src/middleware.php';
 
+// Register routes
 require __DIR__ . '/../src/Balance_Check.php';
 
 require __DIR__ . '/../src/Connect.php';
 
 require __DIR__ . '/../src/Change_Password.php';
 
-
-
 // Run app
 $app->run();
-
-// handler include
-
