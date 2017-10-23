@@ -165,6 +165,53 @@
 			}
 		}
 
+		public function passupdate($table, $username, $password, $pin, $newpass){
+			$sql = "SELECT * FROM $table WHERE _username='{$username}' ORDER BY '_id' DESC limit 1";
+		    $q = $this->DBcon->prepare($sql);
+			$q->execute();
+			$data = $q->fetch(PDO::FETCH_ASSOC);
+		    $count=$q->rowCount();
+
+		    if($count){
+			    $getUsername = $data['_username'];
+			    $username_Id = $data['_id'];
+
+			    $sql2 = "SELECT * FROM _radcheck WHERE _foreignKey2='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql2);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $count2=$q->rowCount();
+			    $getpw = $data['_Password'];
+			    $username = $data['_id'];
+
+			    $sql3 = "SELECT * FROM _pin WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql3);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpin = $data['_pin'];
+			    $username = $data['_id'];
+		    
+				if ($password == $getpw){
+						if($pin == $getpin){
+							$sqll = "UPDATE _radcheck SET _Password = '$newpass'";
+							$q = $this->DBcon->prepare($sqll);
+							if($q->execute()){
+								return "password updated";
+							}else{
+								return "error updateing password";
+							}
+				        }else{
+				            return "incorrect password";
+				        }
+				}else {
+				    return "username doest exist";
+				}
+			}
+
+		public function updatePassword($username, $password, $newpass){
+			$updatePass = passupdate('tbl_student', $username, $password, $newpass);
+		}
+
 		public function connect($username, $password){
 			$login = $this->login('tbl_student', $username, $password);
 			return $login;
@@ -259,6 +306,50 @@
 		public function cashBalance($username, $password){
 			$balance = $this->cashbal('tbl_student', $username, $password);
 			return $balance;
+		}
+
+		public function iconnectAction($table, $username, $password, $pin){
+			$sql = "SELECT * FROM $table WHERE _username='$username' ORDER BY '_id' DESC limit 1";
+		    $q = $this->DBcon->prepare($sql);
+			$q->execute();
+			$data = $q->fetch(PDO::FETCH_ASSOC);
+		    $count=$q->rowCount();
+
+		    if($count){
+			    $getUsername = $data['_username'];
+			    $username_Id = $data['_id'];
+
+			    $sql2 = "SELECT * FROM _radcheck WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql2);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpw = $data['_Password'];
+			    $username = $data['_id'];
+
+			    $sql3 = "SELECT * FROM _pin WHERE _id='$username_Id' ORDER BY '_id' DESC limit 1";
+			    $q = $this->DBcon->prepare($sql3);
+				$q->execute();
+				$data = $q->fetch(PDO::FETCH_ASSOC);
+			    $getpin = $data['_pin'];
+			    $username = $data['_id'];
+		    
+				if ($password == $getpw || $password == $getpin) {
+		            $sql3 = "SELECT * FROM _easywallet WHERE _foreignKey='$username_Id' ORDER BY '_id' DESC limit 1";
+				    $q = $this->DBcon->prepare($sql3);
+					$q->execute();
+					$data = $q->fetch(PDO::FETCH_ASSOC);
+				    $databal = $data['_cashBalance'];
+				    return $databal;
+		        } else {
+		            return "incorrect password";
+		        }
+			}else {
+			    return "username doest exist";
+			}
+		}
+
+		public function iconnect($username, $password, $pin){
+			$data = $this->iconnectAction('tbl_student',$username, $password, $pin)
 		}
 
 		public function GetClientMac(){
