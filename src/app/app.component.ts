@@ -13,7 +13,7 @@ import { BuyDataPage } from '../pages/buy-data/buy-data';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = ShareDataPage;
+  rootPage:any = HomePage;
   //rootPage:any = BuyDataPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
