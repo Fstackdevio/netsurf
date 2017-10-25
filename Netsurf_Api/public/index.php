@@ -28,7 +28,11 @@ require __DIR__ . '/../src/dependencies.php';
 require __DIR__ . '/../src/middleware.php';
 
 // Register routes
-require __DIR__ . '/../src/routes.php';
+require __DIR__ . '/../src/Balance_Check.php';
+
+require __DIR__ . '/../src/Connect.php';
+
+require __DIR__ . '/../src/Change_Password.php';
 
 // Run app
 $app->run();

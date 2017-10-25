@@ -1,0 +1,1 @@
+INSERT INTO `tbl_student`(`_foreignKey`, `_firstname`, `_lastname`, `_username`, `_regNumber`, `_matNum`, `_email`) VALUES ('1', 'emmanuel', 'adeojo', 'adeojo.emmanuel', '1300890', '13bd002644', 'adeojo.emmanuel@lmu.edu.ng')
