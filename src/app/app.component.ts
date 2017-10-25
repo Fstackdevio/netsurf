@@ -7,12 +7,13 @@ import { HomePage } from '../pages/home/home';
 import { ShareDataPage } from '../pages/share-data/share-data';
 /*import { HomePage } from '../pages/home/home';*/
 import { LoginPage } from '../pages/login/login';
+import { SettingsPage } from '../pages/settings/settings';
 import { BuyDataPage } from '../pages/buy-data/buy-data';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = ShareDataPage;
   //rootPage:any = BuyDataPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

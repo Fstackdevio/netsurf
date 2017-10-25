@@ -1,15 +1,19 @@
 .ion-page > ion-content{
 	background: #fff;
+	overflow: hidden;
 }
 page-share-data {
 	.scroll-content{
 		flex-direction: column;
+		overflow: hidden;
 		display: flex;
 		background: #fff;
-		#top{
-			background: #9E82FF;
-			flex: 0.7;
-			height: 50vh;
+		/* #top{
+			 background: #9E82FF;
+			 flex: 0.8;
+			// height: 50vh;
+			width: 100%;
+			border-bottom-left-radius: 50%;
 		}
 		#mid{
 			background: url('./../assets/images/curve-xhdpi.png');
@@ -59,5 +63,158 @@ page-share-data {
 				}
 			}
 		}
+		
+		#out{
+		    width: 100vw;
+		    height: 50vh;
+		    overflow: hidden;
+		    background: green;
+		    position: relative;
+		}
+		#in{
+		    width: 120vw;
+		    height: 200px;
+		    border-radius: 100%;
+		    background: black;
+		    position: absolute;
+		    left: -50px;
+		    top: 30px;
+		} */
+	}
+
+	/* #container {
+	  width: 100vw;
+	  height: 100vh;
+	  background: #fff;
+	  overflow: hidden;
+	  position: relative;
+	  color: red;
+	  z-index: 1000
+	}
+	
+	#container::before {
+	  content: "";
+	  //z-index: -2;
+	  display: block;
+	  width: 200vw;
+	  height: 200vw;
+	  border-radius: 50%;
+	  background: #9E82FF;
+	  position: absolute;	
+	  bottom: 65vh;
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+	
+	.content{
+		position: relative;
+		color: red;
+		text-align: center;
+	} */
+
+	#background {
+		width: 100vw;
+		height: 100vh;
+		background: #fff;
+		overflow: hidden;
+		position: fixed;
+	}
+
+	#background::before {
+	  content: "";
+	  display: block;
+	  width: 200vw;
+	  height: 200vw;
+	  border-radius: 50%;
+	  background: #9E82FF;
+	  position: absolute;
+	  bottom: 70vh;
+	  left: 50%;
+	  transform: translateX(-50%);
+	}
+
+	#wrapper {
+	  position: relative;
+	  color: #fff;
+	  text-align: center;	
+	  height: 100vh;
+	  #ico{
+	  	font-size: 7.5em;
+	  	position: relative;
+	  	bottom: -1.5vh;
+	  	color: #fff;
+	  }
+
+	  .context{
+	  	font-weight: lighter;
+	  	color: #9E82FF;
+	  	margin-top: 30%;
+	  	display: block;
+	  	.headtext{
+	  		display: block;
+	  		font-size: 2em;
+	  	}
+	  	.subtext{
+	  		display: block;
+	  		color: #505458;
+	  		margin: 2% 0;
+	  	}
+
+	  	#body{
+	  		border: 1px solid green;
+	  	}
+
+	  	
+	  }
+
+	  button#next-btn{
+			color: #fff;
+			background:  #9E82FF;
+			padding: 5%;
+			width: 50%;
+			border-radius: 25px;
+			box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+	  	}
+
+	  ion-input{
+	  	box-shadow: none;
+	  }
+
+	  .swiper-pagination-bullet{
+	  	height: 12px;
+	  	background: #CEC0FF;
+	  	width: 12px;
+	  	opacity: .35;
+	  }
+
+	  .swiper-pagination-bullet-active{
+	  	background: #9E82FF;
+	  	opacity: 1;
+	  }
+
+
+
+	@media screen and (max-width: 411px) {
+	   .context{
+			margin-top: 23%;
+			.headtext{
+				font-size: 1.5em;
+			}
+			.subtext{
+				font-size: 0.9em;
+			}
+		}
+		
+		#ico{
+			font-size: 7em;
+		}
+
+		.swiper-pagination-bullet{
+		  	height: 9px;
+		  	width: 9px;
+		  }
+	}
+
 	}
 }
+

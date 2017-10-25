@@ -20,18 +20,21 @@
 
 <ion-content>
 
-	<section id="top" color="primary">
-		
-	</section>
+	<!-- <section id="top" color="primary"></section>
+	
+	
 	<section id="mid">
 		
 	</section>
+	
+	
+	
 	<section id="bottom">
 		<div class="container" padding>
 			<h1 class="sh-title">Share Data</h1>
 			<p class="sub-text">Enter the recepient's username</p>
-
-
+	
+	
 			<ion-slides pager swipe='false'>
 				<ion-slide style="padding: 10%;">
 					<form>
@@ -43,11 +46,11 @@
 				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
 							</ion-item>
 						</ion-list>
-
+	
 						<button type="submit" id="next-btn">Next</button>
 					</form>
 				</ion-slide>
-
+	
 				<ion-slide  style="padding: 10%;">
 					<form>
 						<ion-list>
@@ -58,11 +61,11 @@
 				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
 							</ion-item>
 						</ion-list>
-
+	
 						<button type="submit" id="next-btn">Next</button>
 					</form>
 				</ion-slide>
-
+	
 				<ion-slide  style="padding: 10%;">
 					<form>
 						<ion-list>
@@ -73,13 +76,76 @@
 				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
 							</ion-item>
 						</ion-list>
-
+	
 						<button type="submit" id="next-btn">Next</button>
 					</form>
 				</ion-slide>
 			</ion-slides>
-
+	
 		</div>
 	</section>
+	 -->
+
+	<div id="background"></div>
+
+	<div id="wrapper">
+		<span id="ico">
+			<i class="zmdi zmdi-account-circle"></i>
+		</span>
+
+		<div class="context" color="primary">
+			<span class="headtext">Share Data</span>
+			<span class="subtext">Enter the recipient's username</span>
+		</div>
+
+		<div id="body" padding style="height: 51.3%;">
+			<ion-slides pager noswipe>
+				<ion-slide style="padding: 10%;">
+					<form>
+						<ion-list>
+							<ion-item>        
+				        		<ion-label>
+				        			<ion-icon name="md-person-add" color="primary"></ion-icon>
+				        		</ion-label>
+				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
+							</ion-item>
+						</ion-list>
+	
+						<button type="submit" id="next-btn">Next</button>
+					</form>
+				</ion-slide>
+	
+				<ion-slide  style="padding: 10%;">
+					<form>
+						<ion-list>
+							<ion-item>        
+				        		<ion-label>
+				        			<ion-icon name="md-person-add" color="primary"></ion-icon>
+				        		</ion-label>
+				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
+							</ion-item>
+						</ion-list>
+	
+						<button type="submit" id="next-btn">Next</button>
+					</form>
+				</ion-slide>
+	
+				<ion-slide  style="padding: 10%;">
+					<form>
+						<ion-list>
+							<ion-item>        
+				        		<ion-label>
+				        			<ion-icon name="md-person-add" color="primary"></ion-icon>
+				        		</ion-label>
+				        		<ion-input clearInput type="text" placeholder="Username" class="form-item"></ion-input>
+							</ion-item>
+						</ion-list>
+	
+						<button type="submit" id="next-btn" padding>Next</button>
+					</form>
+				</ion-slide>
+			</ion-slides>
+		</div>
+	</div>
 
 </ion-content>
