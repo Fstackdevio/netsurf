@@ -15,6 +15,7 @@ import { LoginHistoryPage } from '../pages/login-history/login-history';
 })
 export class MyApp {
   rootPage:any = LoginHistoryPage;
+  //rootPage:any = HomePage;
   //rootPage:any = BuyDataPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
