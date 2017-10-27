@@ -1,3 +1,142 @@
+.scroll-content{
+	overflow: hidden;
+}
 page-login-history {
+
+	.nav-cal-icon{
+		font-size: 1.6em;
+	}
+
+	#background {
+		width: 100vw;
+		height: 100vh;
+		background: #fff;
+		overflow: hidden;
+		position: fixed;
+	}
+
+	#background::before {
+		content: "";
+		display: block;
+		width: 200vw;
+		height: 200vw;
+		border-radius: 50%;
+		background: #9E82FF;
+		position: absolute;
+		bottom: 69vh;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+
+	.wrapper {
+		position: relative;
+		color: #fff;
+		text-align: center;	
+		height: calc(100vh - 56px);
+		//border: 1px solid red;
+		display: flex;
+		flex-direction: column;
+		
+		#top{
+		  	flex: 1.8; // so it can stop at the bottom of the curve
+		  	//border: 1px solid green;
+		  	align-items: center;
+		  	justify-content: center;
+		  	display: flex;
+		  	overflow: hidden !important;
+
+		  	.hero-icon{
+		  		font-size: 7em;
+	  		}
+		}
+
+		#amid{
+			//border: 1px solid red;
+			overflow: hidden !important;
+			margin-top: 0%;
+			flex: 0.4;
+			.head-text{
+				color: #9E82FF;
+				font-size: 2em;
+				letter-spacing: 1px;
+				font-weight: lighter;
+				margin: 5px;
+
+			}
+			.time-text{
+				color: #000;
+				margin: 5px;
+				opacity: 0.6;
+			}
+		}
+
+	  	#bottom{
+	  		flex: 3;
+	  		color: #000;
+	  		//border: 1px solid blue !important;
+	  		overflow: auto;
+	  		#card-section{
+	  			.card{
+	  				background: #fff;
+	  				box-shadow: 1px 2px 15px 6px rgba(158, 130, 255, 0.1);
+	  				color: #95989A;
+	  				padding: 8%;
+	  				display: block;
+	  				position: relative;
+	  				margin-top: 6%;
+	  				margin-bottom: 6%;
+
+	  				.time-data{
+	  					position: absolute;
+	  					left: 5%;
+	  					bottom: 25%;
+
+	  					.time-text{
+	  						font-weight: lighter;
+	  						font-size: 1.3em;
+	  						margin-left: 10%;
+	  						//border:1px solid red;
+	  						line-height: 29px;
+	  					}
+
+	  					.time-icon{
+	  						font-size: 2em;
+	  					}
+	  				}
+
+	  				.location-data{
+	  					position: absolute;
+	  					display: inline-block;
+	  					right: 5%;
+	  					bottom: 25%;
+	  					.location-text{
+		  					font-weight: bold;
+		  					font-size: 1.2em;
+		  					opacity: 0.7;
+
+		  				}
+		  				.location-icon{
+		  					color: #FB5454;
+		  					font-size: 2em;
+		  				}
+
+		  				.active{
+		  					color: #36DB5C;
+		  				}
+	  				}
+	  			}
+	  		}
+	  	}
+	}
+
+	@media screen and (max-width: 411px) {
+		.hero-icon{
+			font-size: 5em !important;
+		}
+		#background::before{
+			bottom: 70vh;
+		}
+	}
 
 }

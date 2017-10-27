@@ -9,11 +9,12 @@ import { ShareDataPage } from '../pages/share-data/share-data';
 import { LoginPage } from '../pages/login/login';
 import { SettingsPage } from '../pages/settings/settings';
 import { BuyDataPage } from '../pages/buy-data/buy-data';
+import { LoginHistoryPage } from '../pages/login-history/login-history';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = ShareDataPage;
+  rootPage:any = LoginHistoryPage;
   //rootPage:any = BuyDataPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
